@@ -73,45 +73,38 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div id="navbar">
-            <h1>Vegetable Box Details</h1>
+    <div class="navbar">
+        <a class="active" href="Home.aspx">Home</a>
+        <a href="AboutUs.aspx">About Us</a>
+        <a href="ContactUs.aspx">Contact Us</a>
+    </div>
+   <form id="form1" runat="server">
+        <div>
+            <asp:GridView ID="gvVegetableBoxes" runat="server" AutoGenerateColumns="false" OnRowCommand="gvVegetableBoxes_RowCommand" DataKeyNames="BoxId">
+    <Columns>
+        <asp:BoundField DataField="BoxId" HeaderText="Box ID" />
+        <asp:BoundField DataField="BoxName" HeaderText="Name" />
+        <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:c}" />
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:Button ID="btnAddToCart" runat="server" CommandName="AddToCart" Text="Add to Cart"
+                            CommandArgument='<%# Container.DataItemIndex %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+            <br />
+            <asp:GridView ID="gvShoppingCart" runat="server" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField DataField="BoxId" HeaderText="Box ID" />
+                    <asp:BoundField DataField="BoxName" HeaderText="Name" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:c}" />
+                </Columns>
+            </asp:GridView>
+            <br />
+            <asp:Label ID="lblTotal" runat="server" Text="Total: $0.00"></asp:Label>
         </div>
-        <div id="main-container">
-            <div id="vegetableboxDetails">
-                <h1>Vegetable Box Details</h1>
-                <asp:GridView ID="gvVegetableBoxes" runat="server" AutoGenerateColumns="False" DataSourceID="dsVegetableBoxes" OnSelectedIndexChanged="gvVegetableBoxes_SelectedIndexChanged" DataKeyNames="BoxId" AutoPostBack="false">
-                    <Columns>
-                        <asp:BoundField DataField="BoxId" HeaderText="Box Id" SortExpression="BoxId" />
-                        <asp:BoundField DataField="BoxName" HeaderText="Box Name" SortExpression="BoxName" />
-                        <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:C}" />
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CommandName="AddToCart" CommandArgument='<%# Eval("BoxId") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-                <asp:SqlDataSource ID="dsVegetableBoxes" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True" SelectCommand="SELECT * FROM VegetableBoxes"></asp:SqlDataSource>
-                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" CssClass="custom-button" />
-            </div>
-            <div id="shoppingCart" class="floating-card">
-                    <div id="cart-container">
-                    <h2>Shopping Cart</h2>
-
-                    <asp:GridView ID="gvShoppingCart" runat="server" AutoGenerateColumns="False">
-                        <Columns>
-                            <asp:BoundField DataField="BoxName" HeaderText="Box Name" SortExpression="BoxName" />
-                            <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" DataFormatString="{0:C}" />
-                        </Columns>
-                    </asp:GridView>
-
-                    <div class="cart-total">
-                        <asp:Label ID="lblTotal" runat="server" Text="Total: £0.00"></asp:Label>
-                    </div>
-                </div>
-            </div>
-       </div>
+       <asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" />
     </form>
 </body>
 </html>

@@ -9,7 +9,13 @@
 
 </head>
 <body>
+    <div class="navbar">
+    <a class="active" href="Home.aspx">Home</a>
+    <a href="AboutUs.aspx">About Us</a>
+    <a href="ContactUs.aspx">Contact Us</a>
+</div>
     <form id="form1" runat="server">
+        
         <div class="container">
             <h1>Welcome to Vegetable Box Business Management System</h1>
             <div class="login-options">
