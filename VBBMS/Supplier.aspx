@@ -5,15 +5,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Suppliers Page</title>
-    <!-- Include any necessary styles or scripts -->
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2"/>
+    <style>
+        h2{
+            color: white;
+        }
+    </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a class="active" href="Supplier.aspx">Suppliers</a>
+        <a href="#">Order Details</a>
+    </div>
     <form id="form1" runat="server">
         <div>
             <h2>Suppliers Information</h2>
 
             <!-- Display Suppliers -->
-            <asp:GridView ID="gvSuppliers" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierId">
+            <asp:GridView ID="gvSuppliers" runat="server" CssClass="gridview" AutoGenerateColumns="False" DataKeyNames="SupplierId"
+                OnRowEditing="gvSuppliers_RowEditing" 
+                OnRowCancelingEdit="gvSuppliers_RowCancelingEdit" 
+                OnRowUpdating="gvSuppliers_RowUpdating" 
+                OnRowDeleting="gvSuppliers_RowDeleting">
                 <Columns>
                     <asp:BoundField DataField="SupplierId" HeaderText="Supplier ID" ReadOnly="true" SortExpression="SupplierId" />
                     <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" SortExpression="SupplierName" />
@@ -21,14 +35,14 @@
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                    <asp:CommandField ShowInsertButton="True" ShowEditButton="True" ShowDeleteButton="True" />
+                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
                 </Columns>
             </asp:GridView>
 
             <!-- Add New Supplier -->
             <h2>Add New Supplier</h2>
             <asp:DetailsView ID="dvNewSupplier" runat="server" AutoGenerateRows="False" DefaultMode="Insert"
-                OnItemInserted="dvNewSupplier_ItemInserted" DataSourceID="dsSuppliers">
+    OnItemInserted="dvNewSupplier_ItemInserted" DataSourceID="dsSuppliers" CssClass="details-view">
                 <Fields>
                     <asp:BoundField DataField="SupplierId" HeaderText="Supplier ID" ReadOnly="true" SortExpression="SupplierId" />
                     <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" SortExpression="SupplierName" />
@@ -36,7 +50,7 @@
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                    <asp:CommandField ShowInsertButton="True" ShowEditButton="True" ShowDeleteButton="True" />
+                    <asp:CommandField ShowInsertButton="True" />
                 </Fields>
             </asp:DetailsView>
 

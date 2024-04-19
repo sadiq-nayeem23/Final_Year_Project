@@ -16,6 +16,11 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a class="active" href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a href="Supplier.aspx">Suppliers</a>
+        <a href="#">Order Details</a>
+    </div>
     <form id="form1" runat="server">
         <div>
             <h1>Welcome to Admin Dashboard</h1>

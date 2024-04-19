@@ -5,9 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="StyleSheet.css"/>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2">
 </head>
 <body>
+    <div class="navbar">
+        <a class="active" href="Home.aspx">Home</a>
+        <a href="AboutUs.aspx">About Us</a>
+        <a href="ContactUs.aspx">Contact Us</a>
+    </div>
     <form id="form1" runat="server">
     <div class="container">
         <h2>Login</h2>

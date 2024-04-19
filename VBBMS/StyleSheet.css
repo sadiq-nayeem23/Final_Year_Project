@@ -43,7 +43,7 @@ input {
     box-sizing: border-box;
 }
 
-custom-button {
+.custom-button {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
@@ -54,7 +54,7 @@ custom-button {
     transition: background-color 0.3s ease;
 }
 
-custom-button:hover {
+.custom-button:hover {
     background-color: #0056b3;
 }
 
@@ -116,4 +116,115 @@ a:hover {
 .navbar a.active {
     background-color: #04AA6D;
     color: white;
+}
+/* General table styles */
+.gridview {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color: #333; /* Dark text for readability */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+}
+
+    /* Header styles */
+    .gridview th {
+        background-color: #007bff; /* A nice shade of blue */
+        color: #fff; /* White text for contrast */
+        padding: 10px;
+        border: 1px solid #ddd; /* Light grey border */
+    }
+
+    /* Row styles */
+    .gridview td {
+        padding: 8px;
+        border: 1px solid #ddd; /* Light grey border */
+    }
+
+    /* Alternating row styles for better readability */
+    .gridview tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Hover styles for rows */
+    .gridview tr:hover {
+        background-color: #ddd;
+    }
+
+    /* Footer styles, if you have a footer row */
+    .gridview tfoot td {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px;
+    }
+
+/* Make the table responsive */
+@media screen and (max-width: 600px) {
+    .gridview {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Style for DetailsView */
+.details-view {
+    width: 30%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    color: #333; /* Dark grey text for visibility */
+    font-family: Arial, sans-serif; /* Optional: Change to match your design */
+    margin: 20px 0; /* Optional: Adjust spacing around the DetailsView */
+}
+
+    .details-view th, .details-view td {
+        padding: 10px;
+        border: 1px solid #ddd; /* Light grey border for each cell */
+    }
+
+    .details-view th {
+        background-color: #007bff; /* Blue background for header */
+        color: #ffffff; /* White text for header */
+    }
+
+    .details-view tr {
+        background-color: #ffffff; /* White background for rows, adjust for transparency as needed */
+    }
+
+    .details-view input[type=text], .details-view input[type=email], .details-view input[type=tel] {
+        width: 90%; /* Make input fields almost full cell width */
+        padding: 5px; /* Add some padding inside input fields */
+        border: 1px solid #ccc; /* Light grey border for inputs */
+    }
+
+    /* Adjust the input fields background transparency as needed */
+    .details-view input[type=text], .details-view input[type=email], .details-view input[type=tel] {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .details-view .CommandRow {
+        text-align: right; /* Align the Insert button to the right */
+    }
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    .details-view, .details-view tr, .details-view td {
+        display: block;
+    }
+
+        .details-view th {
+            display: none; /* Hide headers on small screens */
+        }
+
+        .details-view td {
+            position: relative;
+            padding-left: 50%; /* Make room for data labels on small screens */
+        }
+
+            .details-view td:before {
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px; /* Ensure text doesn't overflow */
+                white-space: nowrap;
+                content: attr(data-label); /* Use the data-label attribute as content */
+            }
 }

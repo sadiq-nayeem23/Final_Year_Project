@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="active" href="Home.aspx">Home</a>
+        <a href="Home.aspx">Home</a>
         <a href="AboutUs.aspx">About Us</a>
-        <a href="ContactUs.aspx">Contact Us</a>
+        <a class="active" href="ContactUs.aspx">Contact Us</a>
     </div>
     <div class="container">
         <h1>Contact Us</h1>

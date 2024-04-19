@@ -19,8 +19,8 @@
         <div class="container">
             <h1>Welcome to Vegetable Box Business Management System</h1>
             <div class="login-options">
-                <asp:HyperLink ID="lnkAdminLogin" runat="server" NavigateUrl="admin-login.aspx">Admin Login</asp:HyperLink>
-                <asp:HyperLink ID="lnkCustomerLogin" runat="server" NavigateUrl="Customer-Login.aspx">Customer Login</asp:HyperLink>
+                <asp:HyperLink ID="lnkAdminLogin" runat="server" NavigateUrl="Login.aspx">Admin Login</asp:HyperLink>
+                <asp:HyperLink ID="lnkCustomerLogin" runat="server" NavigateUrl="Login.aspx">Customer Login</asp:HyperLink>
             </div>
         </div>
     </form>

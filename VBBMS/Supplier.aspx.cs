@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -19,9 +20,16 @@ public partial class Supplier : System.Web.UI.Page
 
     protected void BindSuppliersData()
     {
-        // Bind Suppliers data to GridView
-        gvSuppliers.DataBind();
+        using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Suppliers", connection);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            gvSuppliers.DataSource = dt;
+            gvSuppliers.DataBind();
+        }
     }
+
     protected void dvNewSupplier_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
     {
         // Check if the insertion was successful
@@ -34,7 +42,7 @@ public partial class Supplier : System.Web.UI.Page
             dvNewSupplier.ChangeMode(DetailsViewMode.Insert);
 
             // Refresh the GridView to show the new data
-            gvSuppliers.DataBind();
+            BindSuppliersData();
         }
         else
         {
@@ -62,19 +70,18 @@ public partial class Supplier : System.Web.UI.Page
 
     protected void gvSuppliers_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        // Update the row being edited
-        GridViewRow row = gvSuppliers.Rows[e.RowIndex];
-        int supplierId = Convert.ToInt32(gvSuppliers.DataKeys[e.RowIndex].Values["SupplierId"]);
-        string supplierName = ((TextBox)row.FindControl("txtSupplierName")).Text;
-        string contactPerson = ((TextBox)row.FindControl("txtContactPerson")).Text;
-        string email = ((TextBox)row.FindControl("txtEmail")).Text;
-        string phone = ((TextBox)row.FindControl("txtPhone")).Text;
-        string address = ((TextBox)row.FindControl("txtAddress")).Text;
+        // Retrieve the values from the GridView row being updated
+        int supplierId = Convert.ToInt32(gvSuppliers.DataKeys[e.RowIndex].Value);
+        string supplierName = (e.NewValues["SupplierName"] ?? string.Empty).ToString();
+        string contactPerson = (e.NewValues["ContactPerson"] ?? string.Empty).ToString();
+        string email = (e.NewValues["Email"] ?? string.Empty).ToString();
+        string phone = (e.NewValues["Phone"] ?? string.Empty).ToString();
+        string address = (e.NewValues["Address"] ?? string.Empty).ToString();
 
-        // Placeholder method for updating a supplier in the database
+        // Implement the database update operation here
         UpdateSupplier(supplierId, supplierName, contactPerson, email, phone, address);
 
-        // Exit the editing mode
+        // Reset the edit index and rebind the GridView to show the updated data
         gvSuppliers.EditIndex = -1;
         BindSuppliersData();
     }
