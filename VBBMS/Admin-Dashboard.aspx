@@ -20,6 +20,7 @@
         <a class="active" href="Admin-Dashboard.aspx">Admin Dashboard</a>
         <a href="Supplier.aspx">Suppliers</a>
         <a href="#">Order Details</a>
+        <a href="Stock.aspx">Stock</a>
     </div>
     <form id="form1" runat="server">
         <div>
