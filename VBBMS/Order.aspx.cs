@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,23 +12,38 @@ public partial class Order : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            BindVegetableDetails();
-            // Initialize shopping cart session to ensure it's available even before adding items
-            Session["ShoppingCart"] = new List<Vegetable>();
+            BindVegetableBoxes();
+            InitializeCart();
         }
     }
 
-    protected void BindVegetableDetails()
+    private void BindVegetableBoxes()
     {
-        List<Vegetable> vegetables = new List<Vegetable>
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        using (SqlConnection conn = new SqlConnection(connectionString))
         {
-            new Vegetable { BoxId = 1, BoxName = "Potatoes", Price = 1.89 },
-            new Vegetable { BoxId = 2, BoxName = "Carrots", Price = 2.50 },
-            // Add more vegetables as needed
-        };
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT BoxId, BoxName, Price FROM VegetableBoxes", conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
 
-        gvVegetableBoxes.DataSource = vegetables;
-        gvVegetableBoxes.DataBind();
+            gvVegetableBoxes.DataSource = dt;
+            gvVegetableBoxes.DataBind();
+        }
+    }
+
+    private void InitializeCart()
+    {
+        if (Session["ShoppingCart"] == null)
+        {
+            Session["ShoppingCart"] = new List<Vegetable>();
+        }
+        else
+        {
+            BindShoppingCart(); // Bind existing cart items if session is not new
+            UpdateTotalPrice(); // Update total price based on existing items in the cart
+        }
     }
 
     protected void gvVegetableBoxes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -35,58 +51,65 @@ public partial class Order : System.Web.UI.Page
         if (e.CommandName == "AddToCart")
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
-            int boxId = Convert.ToInt32(gvVegetableBoxes.DataKeys[rowIndex].Value);
-            Vegetable selectedVegetable = GetVegetableDetails(boxId);
-
-            AddToCart(selectedVegetable);
-            BindShoppingCart();
-            UpdateTotalPrice();
+            AddItemToCart(rowIndex);
         }
     }
 
-    private Vegetable GetVegetableDetails(int boxId)
+    private void AddItemToCart(int rowIndex)
     {
-        // This method should ideally fetch details from a real database
-        // For demonstration, returning a dummy vegetable
-        return new Vegetable
+        // Retrieve the BoxId from the DataKey of the GridView at the specified rowIndex
+        int boxId = Convert.ToInt32(gvVegetableBoxes.DataKeys[rowIndex].Value);
+
+        // Use FindControl to find the Label control within the GridView row
+        Label lblPrice = gvVegetableBoxes.Rows[rowIndex].FindControl("lblPrice") as Label;
+
+        // Check if the label is found; throw an exception if not
+        if (lblPrice == null)
         {
-            BoxId = boxId,
-            BoxName = $"Sample Vegetable {boxId}",
-            Price = 2.99 // Sample price
-        };
+            throw new InvalidOperationException("Failed to find the price label in GridView row.");
+        }
+
+        // Convert the text of the lblPrice to a decimal
+        decimal price = Decimal.Parse(lblPrice.Text, System.Globalization.NumberStyles.Currency);
+
+        // Create and add the vegetable to the shopping cart
+        List<Vegetable> cart = Session["ShoppingCart"] as List<Vegetable>;
+        if (cart == null)
+        {
+            cart = new List<Vegetable>();
+            Session["ShoppingCart"] = cart;
+        }
+        cart.Add(new Vegetable { BoxId = boxId, BoxName = gvVegetableBoxes.Rows[rowIndex].Cells[1].Text, Price = price });
+        Session["ShoppingCart"] = cart;
+
+        BindShoppingCart();
+        UpdateTotalPrice();
     }
 
 
-    private void AddToCart(Vegetable vegetable)
-    {
-        List<Vegetable> shoppingCart = Session["ShoppingCart"] as List<Vegetable>;
-        shoppingCart.Add(vegetable);
-        Session["ShoppingCart"] = shoppingCart;
-    }
+
 
     private void BindShoppingCart()
     {
-        gvShoppingCart.DataSource = Session["ShoppingCart"] as List<Vegetable>;
+        List<Vegetable> cart = (List<Vegetable>)Session["ShoppingCart"];
+        gvShoppingCart.DataSource = cart;
         gvShoppingCart.DataBind();
     }
 
     private void UpdateTotalPrice()
     {
-        double totalPrice = 0;
-        List<Vegetable> shoppingCart = Session["ShoppingCart"] as List<Vegetable>;
-
-        if (shoppingCart != null)
+        List<Vegetable> cart = (List<Vegetable>)Session["ShoppingCart"];
+        decimal totalPrice = 0;
+        foreach (Vegetable veg in cart)
         {
-            foreach (Vegetable vegetable in shoppingCart)
-            {
-                totalPrice += vegetable.Price;
-            }
+            totalPrice += veg.Price;
         }
-        lblTotal.Text = "Total: $" + totalPrice.ToString("0.00");
+        lblTotal.Text = "Total: $" + totalPrice.ToString("N2");
     }
 
     protected void btnCheckout_Click(object sender, EventArgs e)
     {
+        // Redirect to the Checkout page
         Response.Redirect("Checkout.aspx");
     }
 }
@@ -95,5 +118,5 @@ public class Vegetable
 {
     public int BoxId { get; set; }
     public string BoxName { get; set; }
-    public double Price { get; set; }
+    public decimal Price { get; set; }
 }
