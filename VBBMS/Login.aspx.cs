@@ -1,35 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-public partial class Login : System.Web.UI.Page
+public partial class Login : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
 
     private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True";
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        string username = txtUsername.Text;
-        string password = txtPassword.Text;
+        string username = txtUsername.Text.Trim();
+        string password = txtPassword.Text.Trim();
 
-        // Check customer table
-        if (IsCustomer(username, password))
+        if (AuthenticateCustomer(username, password))
         {
-            // Redirect to customer ordering page
-            Response.Redirect("Order.aspx");
+            // Redirect customers to the ordering page
+            Response.Redirect("Home.aspx");
         }
-        // Check admin table
-        else if (IsAdmin(username, password))
+        else if (AuthenticateAdmin(username, password))
         {
-            // Redirect to admin panel page
+            // Redirect admins to the dashboard
             Response.Redirect("Admin-Dashboard.aspx");
         }
         else
@@ -38,38 +31,49 @@ public partial class Login : System.Web.UI.Page
         }
     }
 
-    private bool IsCustomer(string email, string password)
+    private bool AuthenticateCustomer(string email, string password)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            string query = "SELECT COUNT(*) FROM Customers WHERE Email = @Email AND Password = @Password";
+            string query = "SELECT CustomerID FROM Customers WHERE Email = @Email AND Password = @Password";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@Password", password);
 
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count > 0;
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    Session["UserID"] = result;  // Store CustomerID in session
+                    Session["UserRole"] = "Customer";  // Indicate role
+                    return true;
+                }
+                return false;
             }
         }
     }
 
-    private bool IsAdmin(string adminID, string password)
+    private bool AuthenticateAdmin(string adminID, string password)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            string query = "SELECT COUNT(*) FROM Admin WHERE AdminID = @AdminID AND Password = @Password";
+            string query = "SELECT AdminID FROM Admin WHERE AdminID = @AdminID AND Password = @Password";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@AdminID", adminID);
                 command.Parameters.AddWithValue("@Password", password);
 
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count > 0;
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    Session["AdminID"] = result;  // Store AdminID in session
+                    Session["UserRole"] = "Admin";  // Indicate role
+                    return true;
+                }
+                return false;
             }
         }
-
     }
 }

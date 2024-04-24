@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="active" href="Home.aspx">Home</a>
+        <a class="active" href="Login.aspx">Home</a>
         <a href="AboutUs.aspx">About Us</a>
         <a href="ContactUs.aspx">Contact Us</a>
     </div>
@@ -21,7 +21,6 @@
         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control" required></asp:TextBox>
         <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="custom-button" />
         <p>Don't have an account? <a href="customer-signup.aspx">Sign up here</a>.</p>
-        <p>Return to <a href="Home.aspx">Homepage</a>.</p>
     </div>
 </form>
 </body>

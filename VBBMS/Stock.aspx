@@ -9,12 +9,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar">
-    <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
-    <a href="Supplier.aspx">Suppliers</a>
-    <a href="#">Order Details</a>
-    <a class="active" href="Stock.aspx">Stock</a>
-</div>
+    <div class="navbar bg-light">
+        <a class="navbar-brand" href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a class="navbar-brand" href="Supplier.aspx">Suppliers</a>
+        <a class="navbar-brand" href="OrderDetails.aspx">Order Details</a>
+        <a class="navbar-brand" href="Stock.aspx">Stock</a>
+        <a class="nav-link" href="Logout.aspx">Logout</a>
+    </div>
     <div class="container mt-3">
         <h2>Vegetable Boxes Stock Management</h2>
         <form id="form1" runat="server">
