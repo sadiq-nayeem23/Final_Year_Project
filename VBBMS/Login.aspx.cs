@@ -17,12 +17,10 @@ public partial class Login : Page
 
         if (AuthenticateCustomer(username, password))
         {
-            // Redirect customers to the ordering page
             Response.Redirect("Home.aspx");
         }
         else if (AuthenticateAdmin(username, password))
         {
-            // Redirect admins to the dashboard
             Response.Redirect("Admin-Dashboard.aspx");
         }
         else

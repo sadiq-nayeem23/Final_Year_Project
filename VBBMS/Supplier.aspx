@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Suppliers Page</title>
-    <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2"/>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2" />
     <style>
-        h2{
+        h2 {
             color: white;
         }
     </style>
@@ -23,12 +23,10 @@
     <form id="form1" runat="server">
         <div>
             <h2>Suppliers Information</h2>
-
-            <!-- Display Suppliers -->
             <asp:GridView ID="gvSuppliers" runat="server" CssClass="gridview" AutoGenerateColumns="False" DataKeyNames="SupplierId"
-                OnRowEditing="gvSuppliers_RowEditing" 
-                OnRowCancelingEdit="gvSuppliers_RowCancelingEdit" 
-                OnRowUpdating="gvSuppliers_RowUpdating" 
+                OnRowEditing="gvSuppliers_RowEditing"
+                OnRowCancelingEdit="gvSuppliers_RowCancelingEdit"
+                OnRowUpdating="gvSuppliers_RowUpdating"
                 OnRowDeleting="gvSuppliers_RowDeleting">
                 <Columns>
                     <asp:BoundField DataField="SupplierId" HeaderText="Supplier ID" ReadOnly="true" SortExpression="SupplierId" />
@@ -41,10 +39,9 @@
                 </Columns>
             </asp:GridView>
 
-            <!-- Add New Supplier -->
             <h2>Add New Supplier</h2>
             <asp:DetailsView ID="dvNewSupplier" runat="server" AutoGenerateRows="False" DefaultMode="Insert"
-    OnItemInserted="dvNewSupplier_ItemInserted" DataSourceID="dsSuppliers" CssClass="details-view">
+                OnItemInserted="dvNewSupplier_ItemInserted" DataSourceID="dsSuppliers" CssClass="details-view">
                 <Fields>
                     <asp:BoundField DataField="SupplierId" HeaderText="Supplier ID" ReadOnly="true" SortExpression="SupplierId" />
                     <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" SortExpression="SupplierName" />
@@ -56,7 +53,6 @@
                 </Fields>
             </asp:DetailsView>
 
-            <!-- Data Source -->
             <asp:SqlDataSource ID="dsSuppliers" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
                 SelectCommand="SELECT * FROM Suppliers" InsertCommand="INSERT INTO Suppliers (SupplierName, ContactPerson, Email, Phone, Address) VALUES (@SupplierName, @ContactPerson, @Email, @Phone, @Address)"
                 UpdateCommand="UPDATE Suppliers SET SupplierName = @SupplierName, ContactPerson = @ContactPerson, Email = @Email, Phone = @Phone, Address = @Address WHERE SupplierId = @SupplierId"

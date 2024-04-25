@@ -15,19 +15,16 @@ public partial class ContactUs : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        // Retrieve form data
         string name = txtName.Text.Trim();
         string email = txtEmail.Text.Trim();
         string message = txtMessage.Text.Trim();
 
-        // Validate form data
         if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(message))
         {
             lblMessage.Text = "Please fill in all fields.";
             return;
         }
 
-        // Insert data into the database
         string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"; // Update with your connection string
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -57,7 +54,6 @@ public partial class ContactUs : System.Web.UI.Page
 
     private void ClearForm()
     {
-        // Clear form fields
         txtName.Text = "";
         txtEmail.Text = "";
         txtMessage.Text = "";

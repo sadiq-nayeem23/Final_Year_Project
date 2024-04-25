@@ -128,24 +128,7 @@
                     </asp:GridView>
                     <asp:Label ID="lblTotal" runat="server" CssClass="h4" Text="Total: $0.00" />
                     <br />
-                    <asp:Button ID="btnConfirm" runat="server" Text="Confirm" OnClick="btnConfirm_Click" CssClass="btn btn-success" />
-                    <asp:Panel ID="pnlInvoice" runat="server" CssClass="invoice" Visible="false">
-                        <h4>Order Confirmation</h4>
-                        <p>
-                            <strong>Order ID:</strong>
-                            <asp:Label ID="lblOrderId" runat="server" Text=""></asp:Label>
-                        </p>
-                        <p>
-                            <strong>Date:</strong>
-                            <asp:Label ID="lblOrderDate" runat="server" Text=""></asp:Label>
-                        </p>
-                        <p>
-                            <strong>Total Amount:</strong>
-                            <asp:Label ID="lblInvoiceTotal" runat="server" Text=""></asp:Label>
-                        </p>
-                        <asp:Button ID="Button1" runat="server" Text="Proceed to Checkout" CssClass="btn btn-success" OnClick="btnCheckout_Click" />
-                    </asp:Panel>
-
+                    <asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" CssClass="btn btn-success" />
                 </div>
             </div>
         </form>

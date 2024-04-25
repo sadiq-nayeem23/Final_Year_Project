@@ -19,7 +19,6 @@
     <div class="container mt-3">
         <h2>Vegetable Boxes Stock Management</h2>
         <form id="form1" runat="server">
-        <!-- GridView for Displaying and Modifying Vegetable Boxes -->
         <asp:GridView ID="gvVegetableBoxes" runat="server" CssClass="table table-hover" AutoGenerateColumns="False"
             DataKeyNames="BoxId" DataSourceID="SqlDataSource1"
             OnRowEditing="gvVegetableBoxes_RowEditing" OnRowDeleting="gvVegetableBoxes_RowDeleting" OnRowUpdating="gvVegetableBoxes_RowUpdating"
@@ -42,7 +41,6 @@
             </Columns>
         </asp:GridView>
 
-        <!-- DetailsView for Adding New Vegetable Boxes -->
         <asp:DetailsView ID="dvVegetableBox" runat="server" CssClass="table table-bordered" Height="50px" Width="125px"
             AutoGenerateRows="False" DefaultMode="Insert" DataSourceID="SqlDataSource1">
             <Fields>
@@ -55,7 +53,6 @@
             </Fields>
         </asp:DetailsView>
 
-        <!-- SqlDataSource to handle SQL database operations -->
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
             SelectCommand="SELECT * FROM [VegetableBoxes]"

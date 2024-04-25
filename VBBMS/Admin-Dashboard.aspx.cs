@@ -7,7 +7,7 @@ public partial class Admin_Dashboard : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            // Initial data loading logic can go here if necessary
+        
         }
     }
 }

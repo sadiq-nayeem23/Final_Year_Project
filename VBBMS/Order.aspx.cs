@@ -125,77 +125,21 @@ public partial class Order : System.Web.UI.Page
         lblTotal.Text = "Total: $" + totalPrice.ToString("N2");
     }
 
-    protected void btnConfirm_Click(object sender, EventArgs e)
+    protected void btnCheckout_Click(object sender, EventArgs e)
     {
         var cart = Session["ShoppingCart"] as List<Vegetable>;
         if (cart != null && cart.Count > 0)
         {
-            if (PlaceOrder(cart, out int orderId))
+            decimal totalAmount = cart.Sum(item => item.Price * item.Quantity);
+            string queryString = $"Checkout.aspx?totalAmount={totalAmount}";
+            foreach (var item in cart)
             {
-                ShowInvoice(orderId, cart);
-                Session["CartOrderID"] = orderId;
+                queryString += $"&boxId={item.BoxId}&boxName={item.BoxName}&price={item.Price}&quantity={item.Quantity}";
             }
-            else
-            {
-                // Handle the error, e.g., show a message to the user
-            }
+            Response.Redirect(queryString);
         }
     }
 
-    private void ShowInvoice(int orderId, List<Vegetable> cart)
-    {
-        lblOrderId.Text = orderId.ToString();
-        lblOrderDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        lblInvoiceTotal.Text = $"${cart.Sum(item => item.Price * item.Quantity):N2}";
-        pnlInvoice.Visible = true; // Ensure the panel is set to visible
-    }
-
-
-    protected void btnCheckout_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Checkout.aspx");
-    }
-
-    private bool PlaceOrder(List<Vegetable> cart, out int orderId)
-    {
-        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        orderId = 0;
-        try
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                SqlCommand cmd = new SqlCommand("INSERT INTO Orders (CustomerID, OrderDate, TotalAmount, Status) VALUES (@CustomerID, @OrderDate, @TotalAmount, @Status); SELECT SCOPE_IDENTITY();", conn, transaction);
-                cmd.Parameters.AddWithValue("@CustomerID", HttpContext.Current.User.Identity.Name); // Adjust according to your authentication method
-                cmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
-                decimal totalAmount = cart.Sum(item => item.Price * item.Quantity);
-                cmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                cmd.Parameters.AddWithValue("@Status", "Ordered");
-
-                orderId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                foreach (var item in cart)
-                {
-                    SqlCommand cmdDetails = new SqlCommand("INSERT INTO OrderDetails (OrderID, BoxID, Quantity, Subtotal) VALUES (@OrderID, @BoxID, @Quantity, @Subtotal)", conn, transaction);
-                    cmdDetails.Parameters.AddWithValue("@OrderID", orderId);
-                    cmdDetails.Parameters.AddWithValue("@BoxID", item.BoxId);
-                    cmdDetails.Parameters.AddWithValue("@Quantity", item.Quantity);
-                    cmdDetails.Parameters.AddWithValue("@Subtotal", item.Price * item.Quantity);
-                    cmdDetails.ExecuteNonQuery();
-                }
-
-                transaction.Commit();
-                return true;
-            }
-        }
-        catch (Exception)
-        {
-            // Log or handle exceptions here
-            return false;
-        }
-    }
 }
 
 public class Vegetable

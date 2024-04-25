@@ -15,7 +15,6 @@ public partial class Customer_Signup : System.Web.UI.Page
 
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
-        // Retrieve user input
         string firstName = txtFirstName.Text;
         string lastName = txtLastName.Text;
         string email = txtEmail.Text;
@@ -23,7 +22,6 @@ public partial class Customer_Signup : System.Web.UI.Page
         string address = txtAddress.Text;
         string password = txtPassword.Text;
 
-        // Insert into the Customers table (Replace connection string with your actual connection string)
         string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True";
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
