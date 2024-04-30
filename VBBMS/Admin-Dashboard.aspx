@@ -30,7 +30,7 @@
         <a class="navbar-brand" href="Supplier.aspx">Suppliers</a>
         <a class="navbar-brand" href="OrderDetails.aspx">Order Details</a>
         <a class="navbar-brand" href="Stock.aspx">Stock</a>
-        <a class="nav-link" href="Logout.aspx">Logout</a>
+        <a class="nav-link" href="Login.aspx">Logout</a>
     </div>
     <div class="container-fluid">
         <form id="form1" runat="server">

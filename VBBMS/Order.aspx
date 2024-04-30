@@ -81,6 +81,7 @@
                         <Columns>
                             <asp:BoundField DataField="BoxId" HeaderText="Box ID" />
                             <asp:BoundField DataField="BoxName" HeaderText="Name" />
+                            <asp:BoundField DataField="StockQuantity" HeaderText="Stock" />
                             <asp:TemplateField HeaderText="Price">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price", "{0:c}") %>'></asp:Label>
@@ -128,6 +129,11 @@
                     </asp:GridView>
                     <asp:Label ID="lblTotal" runat="server" CssClass="h4" Text="Total: $0.00" />
                     <br />
+                    <div class="form-group">
+                        <label for="txtEmail">Email:</label>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger"></asp:Label>
                     <asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" CssClass="btn btn-success" />
                 </div>
             </div>

@@ -15,9 +15,10 @@
 <body>
     <div class="navbar">
         <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
-        <a class="active" href="Supplier.aspx">Suppliers</a>
         <a href="OrderDetails.aspx">Order Details</a>
         <a href="Stock.aspx">Stock</a>
+        <a href="Staff.aspx">Staff</a>
+        <a class="active" href="Supplier.aspx">Suppliers</a>
         <a href="Login.aspx">Logout</a>
     </div>
     <form id="form1" runat="server">

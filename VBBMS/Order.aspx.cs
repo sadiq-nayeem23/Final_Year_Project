@@ -25,7 +25,7 @@ public partial class Order : System.Web.UI.Page
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT BoxId, BoxName, Price FROM VegetableBoxes", conn);
+            SqlCommand cmd = new SqlCommand("SELECT BoxId, BoxName, StockQuantity, Price FROM VegetableBoxes", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -130,15 +130,52 @@ public partial class Order : System.Web.UI.Page
         var cart = Session["ShoppingCart"] as List<Vegetable>;
         if (cart != null && cart.Count > 0)
         {
-            decimal totalAmount = cart.Sum(item => item.Price * item.Quantity);
-            string queryString = $"Checkout.aspx?totalAmount={totalAmount}";
-            foreach (var item in cart)
+            // Retrieve email from TextBox
+            string email = txtEmail.Text.Trim();
+
+            // Retrieve Customer ID based on email
+            int customerId = GetCustomerIdByEmail(email);
+
+            if (customerId != -1)
             {
-                queryString += $"&boxId={item.BoxId}&boxName={item.BoxName}&price={item.Price}&quantity={item.Quantity}";
+                decimal totalAmount = cart.Sum(item => item.Price * item.Quantity);
+                string queryString = $"Checkout.aspx?totalAmount={totalAmount}&customerId={customerId}";
+
+                foreach (var item in cart)
+                {
+                    queryString += $"&boxId={item.BoxId}&boxName={item.BoxName}&price={item.Price}&quantity={item.Quantity}";
+                }
+
+                Response.Redirect(queryString);
             }
-            Response.Redirect(queryString);
+            else
+            {
+                lblErrorMessage.Text = "Please input the registered email.";
+            }
         }
     }
+
+    private int GetCustomerIdByEmail(string email)
+    {
+        int customerId = -1;
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT CustomerID FROM Customers WHERE Email = @Email", conn);
+            cmd.Parameters.AddWithValue("@Email", email);
+            object result = cmd.ExecuteScalar();
+
+            if (result != null)
+            {
+                customerId = Convert.ToInt32(result);
+            }
+        }
+
+        return customerId;
+    }
+
 
 }
 

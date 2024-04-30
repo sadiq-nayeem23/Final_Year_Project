@@ -26,6 +26,9 @@
         <div class="container text-center">
             <h2>Thank you for your order!</h2>
             <p>Your order has been received and is being processed.</p>
+            <asp:Label ID="lblOrderId" runat="server" CssClass="alert alert-success"></asp:Label>
+            <br />
+            <p>Keep your order id for tracking the status.</p>
             <asp:HyperLink ID="hlBackToHome" runat="server" NavigateUrl="Home.aspx" Text="Back to Home Page" CssClass="btn btn-primary" />
         </div>
     </form>
