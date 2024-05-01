@@ -7,13 +7,44 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('Assets/websiteheader-1080x576.jpg'); /* Ensure the path is correct */
+            background-image: url('Assets/freshvegetables.jpg'); /* Ensure the path is correct */
             background-size: cover;
             background-position: center;
             color: black;
+            background-attachment:fixed;
         }
 
         .navbar {
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* Make navbar transparent */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            background-color: lightblue;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+
+        .navbar a:hover {
+            background-color: deepskyblue; /* Change color on hover */
+            color: white;
+        }
+
+        .container-fluid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjust height to use the full vertical center alignment */
+        }
+
+        .btn-dashboard {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
             margin-bottom: 20px;
         }
 
@@ -26,87 +57,29 @@
 </head>
 <body>
     <div class="navbar bg-light">
-        <a class="navbar-brand" href="Admin-Dashboard.aspx">Admin Dashboard</a>
-        <a class="navbar-brand" href="Supplier.aspx">Suppliers</a>
-        <a class="navbar-brand" href="OrderDetails.aspx">Order Details</a>
-        <a class="navbar-brand" href="Stock.aspx">Stock</a>
-        <a class="nav-link" href="Login.aspx">Logout</a>
+        <a class="active" href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a href="Login.aspx">Logout</a>
     </div>
     <div class="container-fluid">
         <form id="form1" runat="server">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="section">
-                        <h2>Order Information</h2>
-                        <asp:GridView ID="gvOrders" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataSourceID="dsOrders">
-                            <Columns>
-                                <asp:BoundField DataField="OrderID" HeaderText="Order ID" />
-                                <asp:BoundField DataField="CustomerID" HeaderText="Customer ID" />
-                                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" DataFormatString="{0:d}" />
-                                <asp:BoundField DataField="DeliveryDate" HeaderText="Delivery Date" DataFormatString="{0:d}" />
-                                <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" DataFormatString="{0:C}" />
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="dsOrders" runat="server"
-                            ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
-                            SelectCommand="SELECT * FROM Orders" />
-                    </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='OrderDetails.aspx'">Order Details</button>
                 </div>
-                <div class="col-md-6">
-                    <div class="section">
-                        <h2>Supplier Information</h2>
-                        <asp:GridView ID="gvSuppliers" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataSourceID="dsSuppliers">
-                            <Columns>
-                                <asp:BoundField DataField="SupplierId" HeaderText="Supplier ID" />
-                                <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
-                                <asp:BoundField DataField="ContactPerson" HeaderText="Contact Person" />
-                                <asp:BoundField DataField="Email" HeaderText="Email" />
-                                <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                                <asp:BoundField DataField="Address" HeaderText="Address" />
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="dsSuppliers" runat="server"
-                            ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
-                            SelectCommand="SELECT * FROM Suppliers" />
-                    </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='Stock.aspx'">Stock</button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="section">
-                        <h2>Stock Information</h2>
-                        <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataSourceID="dsStock">
-                            <Columns>
-                                <asp:BoundField DataField="BoxId" HeaderText="Box ID" />
-                                <asp:BoundField DataField="BoxName" HeaderText="Box Name" />
-                                <asp:BoundField DataField="Description" HeaderText="Description" />
-                                <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
-                                <asp:BoundField DataField="StockQuantity" HeaderText="Stock Quantity" />
-                                <asp:BoundField DataField="SupplierID" HeaderText="Supplier ID" />
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="dsStock" runat="server"
-                            ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
-                            SelectCommand="SELECT * FROM VegetableBoxes" />
-                    </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='CustomerInfo.aspx'">Customer Info</button>
                 </div>
-                <div class="col-md-6">
-                    <div class="section">
-                        <h2>Contact Information</h2>
-                        <asp:GridView ID="gvContacts" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataSourceID="dsContacts">
-                            <Columns>
-                                <asp:BoundField DataField="ContactID" HeaderText="Contact ID" />
-                                <asp:BoundField DataField="Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Email" HeaderText="Email" />
-                                <asp:BoundField DataField="Message" HeaderText="Message" />
-                                <asp:BoundField DataField="SubmissionDate" HeaderText="Submission Date" DataFormatString="{0:d}" />
-                            </Columns>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="dsContacts" runat="server"
-                            ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Project\VBBMS\VBBMS\App_Data\Database.mdf;Integrated Security=True"
-                            SelectCommand="SELECT * FROM Contacts" />
-                    </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='Staff.aspx'">Staff</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='Supplier.aspx'">Suppliers</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='ContactInfo.aspx'">Contact Info</button>
                 </div>
             </div>
         </form>

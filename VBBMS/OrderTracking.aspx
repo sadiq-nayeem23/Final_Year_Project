@@ -6,7 +6,7 @@
     <title>Order Tracking</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        body {
+        .bg-custom {
             background-image: url('Assets/order_bg.jpg');
             background-size: cover;
             height: 100vh;
@@ -24,8 +24,26 @@
                     <asp:TextBox ID="OrderId" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <asp:Button ID="TrackButton" runat="server" Text="Track Order" CssClass="btn btn-primary" OnClick="TrackButton_Click" />
-            </form>
-            <asp:Label ID="ResultLabel" runat="server" CssClass="alert mt-4" Visible="false"></asp:Label>
+            
+            <asp:Panel ID="ResultsPanel" runat="server" Visible="false" CssClass="mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Order Date</th>
+                            <th>Delivery Date</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Literal ID="ResultsLiteral" runat="server"></asp:Literal>
+                    </tbody>
+                </table>
+            </asp:Panel>
+            <asp:HyperLink ID="BackHome" runat="server" Text="Back to Home" CssClass="btn btn-info m-2" NavigateUrl="Home.aspx" />
+                </form>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

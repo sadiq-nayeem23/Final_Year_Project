@@ -7,14 +7,32 @@
     <title>Stock Managment</title>
     <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* Make navbar transparent */
+        }
+
+            .navbar a {
+                text-decoration: none;
+                color: black;
+                background-color: lightblue;
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin-right: 10px;
+                transition: background-color 0.3s ease; /* Smooth transition for background color */
+            }
+
+                .navbar a:hover {
+                    background-color: deepskyblue; /* Change color on hover */
+                    color: white;
+                }
+    </style>
 </head>
 <body>
     <div class="navbar bg-light">
-        <a class="navbar-brand" href="Admin-Dashboard.aspx">Admin Dashboard</a>
-        <a class="navbar-brand" href="Supplier.aspx">Suppliers</a>
-        <a class="navbar-brand" href="OrderDetails.aspx">Order Details</a>
-        <a class="navbar-brand" href="Stock.aspx">Stock</a>
-        <a class="nav-link" href="Logout.aspx">Logout</a>
+        <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a href="Login.aspx">Logout</a>
     </div>
     <div class="container mt-3">
         <h2>Vegetable Boxes Stock Management</h2>

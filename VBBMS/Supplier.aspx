@@ -6,24 +6,45 @@
 <head runat="server">
     <title>Suppliers Page</title>
     <link rel="stylesheet" type="text/css" href="StyleSheet.css?v=2" />
-    <style>
-        h2 {
-            color: white;
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+    body {
+        background-image: url('Assets/freshvegetables.jpg'); /* Ensure the path is correct */
+        background-size: cover;
+        background-position: center;
+        color: black;
+        background-attachment: fixed;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.5); /* Make navbar transparent */
+    }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            background-color: lightblue;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
         }
-    </style>
+
+            .navbar a:hover {
+                background-color: deepskyblue; /* Change color on hover */
+                color: white;
+            }
+</style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
-        <a href="OrderDetails.aspx">Order Details</a>
-        <a href="Stock.aspx">Stock</a>
-        <a href="Staff.aspx">Staff</a>
-        <a class="active" href="Supplier.aspx">Suppliers</a>
-        <a href="Login.aspx">Logout</a>
-    </div>
-    <form id="form1" runat="server">
-        <div>
+    <div class="navbar bg-light">
+    <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
+    <a href="Login.aspx">Logout</a>
+</div>
+        <div class="container mt-3">
             <h2>Suppliers Information</h2>
+    <form id="form1" runat="server">
             <asp:GridView ID="gvSuppliers" runat="server" CssClass="gridview" AutoGenerateColumns="False" DataKeyNames="SupplierId"
                 OnRowEditing="gvSuppliers_RowEditing"
                 OnRowCancelingEdit="gvSuppliers_RowCancelingEdit"

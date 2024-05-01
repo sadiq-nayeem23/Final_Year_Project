@@ -13,6 +13,7 @@ public partial class OrderTracking : System.Web.UI.Page
     {
 
     }
+
     protected void TrackButton_Click(object sender, EventArgs e)
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -23,17 +24,19 @@ public partial class OrderTracking : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@OrderId", OrderId.Text.Trim());
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                if (reader.HasRows)
                 {
-                    ResultLabel.Text = $"Order ID: {reader["OrderId"]}, Customer ID: {reader["CustomerID"]}, Order Date: {reader["OrderDate"]}, Delivery Date: {reader["DeliveryDate"]}, Total Amount: {reader["TotalAmount"]}, Status: {reader["Status"]}";
-                    ResultLabel.CssClass += " alert-success";
+                    ResultsLiteral.Text = "";
+                    while (reader.Read())
+                    {
+                        ResultsLiteral.Text += $"<tr><td>{reader["OrderId"]}</td><td>{reader["CustomerID"]}</td><td>{Convert.ToDateTime(reader["OrderDate"]).ToShortDateString()}</td><td>{Convert.ToDateTime(reader["DeliveryDate"]).ToShortDateString()}</td><td>${reader["TotalAmount"]}</td><td>{reader["Status"]}</td></tr>";
+                    }
+                    ResultsPanel.Visible = true;
                 }
                 else
                 {
-                    ResultLabel.Text = "Order not found.";
-                    ResultLabel.CssClass += " alert-danger";
+                    ResultsPanel.Visible = false;
                 }
-                ResultLabel.Visible = true;
                 reader.Close();
                 con.Close();
             }

@@ -24,17 +24,24 @@
         }
         .navbar {
             display: flex;
-            justify-content: space-between; /* This will align navbar items */
+            justify-content: space-between;
             padding: 10px;
-            background-color: #f8f9fa;
         }
         .navbar a {
             padding: 10px;
             text-decoration: none;
             color: black;
         }
+        .navbar a:hover{
+            background-color: #04AA6D;
+color: white;
+        }
         .navbar-right {
             align-items: center;
+        }
+        .navbar-right a:hover{
+            background-color: orangered;
+            color: white;
         }
     </style>
 </head>
@@ -54,7 +61,7 @@
             <h1>Welcome to Vegetable Box Business Management System</h1>
             <div class="login-options">
                 <asp:HyperLink ID="lnkPlaceOrder" runat="server" NavigateUrl="Order.aspx" Text="Place Order" CssClass="btn btn-success btn-lg m-2" />
-                <asp:HyperLink ID="lnkTrackOrder" runat="server" NavigateUrl="Home.aspx" Text="Track Order" CssClass="btn btn-info btn-lg m-2" />
+                <asp:HyperLink ID="lnkTrackOrder" runat="server" NavigateUrl="OrderTracking.aspx" Text="Track Order" CssClass="btn btn-info btn-lg m-2" />
             </div>
         </div>
     </form>
