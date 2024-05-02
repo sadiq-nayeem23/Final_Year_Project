@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('Assets/freshvegetables.jpg'); /* Ensure the path is correct */
+            background-image: url('Assets/freshvegetables.jpg');
             background-size: cover;
             background-position: center;
             color: black;
@@ -16,7 +16,7 @@
 
         .navbar {
             margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.5); /* Make navbar transparent */
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         .navbar a {
@@ -26,11 +26,11 @@
             padding: 10px 20px;
             border-radius: 5px;
             margin-right: 10px;
-            transition: background-color 0.3s ease; /* Smooth transition for background color */
+            transition: background-color 0.3s ease;
         }
 
         .navbar a:hover {
-            background-color: deepskyblue; /* Change color on hover */
+            background-color: deepskyblue;
             color: white;
         }
 
@@ -38,7 +38,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 80vh; /* Adjust height to use the full vertical center alignment */
+            height: 80vh;
         }
 
         .btn-dashboard {
@@ -80,6 +80,9 @@
                 </div>
                 <div class="col-md-4">
                     <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='ContactInfo.aspx'">Contact Info</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary btn-dashboard" onclick="window.location.href='AddAdmin.aspx'">Admin Info</button>
                 </div>
             </div>
         </form>

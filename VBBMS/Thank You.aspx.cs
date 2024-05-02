@@ -14,7 +14,7 @@ public partial class Thank_You : System.Web.UI.Page
             if (Session["LastOrderId"] != null)
             {
                 lblOrderId.Text = "Your order ID is: " + Session["LastOrderId"].ToString();
-                Session.Remove("LastOrderId"); // Optional: Clear the session after displaying the ID
+                Session.Remove("LastOrderId");
             }
             else
             {

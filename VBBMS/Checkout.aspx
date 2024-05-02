@@ -36,7 +36,6 @@
                             <div class="card-text">
                                 <div class="mb-4">
                                     <h4>Order Summary</h4>
-                                    <!-- Display order summary here -->
                                     <asp:Label ID="lblCustomerId" runat="server" CssClass="text-white"></asp:Label>
                                     <asp:Label ID="lblOrderSummary" runat="server" CssClass="text-white"></asp:Label>
                                     <asp:Label ID="lblTotalAmount" runat="server" CssClass="text-white"></asp:Label>

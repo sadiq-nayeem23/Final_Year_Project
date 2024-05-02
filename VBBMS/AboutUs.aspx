@@ -61,7 +61,6 @@
         <p>Our mission is to empower vegetable box businesses with the technology they need to succeed in today's competitive market. With VBBMS, you can focus on delivering fresh produce to your customers while we take care of the rest.</p>
         <p>Thank you for choosing VBBMS for your business needs!</p>
     </div>
-    <!-- Adding Bootstrap 4 JS and its dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -96,7 +96,7 @@ public partial class Checkout : Page
             }
             catch (Exception ex)
             {
-                // Handle the exception (you might want to log it and show an error message)
+                // Handle the exception
                 // Redirect to an error page or display the error on the current page
                 Response.Write("Error occurred: " + ex.Message);
             }
