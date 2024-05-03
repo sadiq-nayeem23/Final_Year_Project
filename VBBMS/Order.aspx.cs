@@ -18,7 +18,6 @@ public partial class Order : System.Web.UI.Page
             InitializeCart();
         }
     }
-
     private void BindVegetableBoxes()
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -34,7 +33,6 @@ public partial class Order : System.Web.UI.Page
             gvVegetableBoxes.DataBind();
         }
     }
-
     private void InitializeCart()
     {
         if (Session["ShoppingCart"] == null)
@@ -47,7 +45,6 @@ public partial class Order : System.Web.UI.Page
             UpdateTotalPrice();
         }
     }
-
     protected void gvVegetableBoxes_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "AddToCart")
@@ -56,7 +53,6 @@ public partial class Order : System.Web.UI.Page
             AddItemToCart(rowIndex, 1);
         }
     }
-
     protected void gvShoppingCart_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -86,7 +82,6 @@ public partial class Order : System.Web.UI.Page
         BindShoppingCart();
         UpdateTotalPrice();
     }
-
     private void AddItemToCart(int rowIndex, int quantity)
     {
         int boxId = Convert.ToInt32(gvVegetableBoxes.DataKeys[rowIndex].Value);
@@ -111,20 +106,17 @@ public partial class Order : System.Web.UI.Page
         BindShoppingCart();
         UpdateTotalPrice();
     }
-
     private void BindShoppingCart()
     {
         gvShoppingCart.DataSource = Session["ShoppingCart"] as List<Vegetable>;
         gvShoppingCart.DataBind();
     }
-
     private void UpdateTotalPrice()
     {
         List<Vegetable> cart = (List<Vegetable>)Session["ShoppingCart"];
         decimal totalPrice = cart.Sum(item => item.Price * item.Quantity);
-        lblTotal.Text = "Total: $" + totalPrice.ToString("N2");
+        lblTotal.Text = "Total: £" + totalPrice.ToString("N2");
     }
-
     protected void btnCheckout_Click(object sender, EventArgs e)
     {
         var cart = Session["ShoppingCart"] as List<Vegetable>;
@@ -154,7 +146,6 @@ public partial class Order : System.Web.UI.Page
             }
         }
     }
-
     private int GetCustomerIdByEmail(string email)
     {
         int customerId = -1;
@@ -175,10 +166,7 @@ public partial class Order : System.Web.UI.Page
 
         return customerId;
     }
-
-
 }
-
 public class Vegetable
 {
     public int BoxId { get; set; }

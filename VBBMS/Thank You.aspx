@@ -13,6 +13,7 @@
             background-position: center;
             height: 100vh;
         }
+
         .container {
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;

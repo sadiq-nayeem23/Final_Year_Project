@@ -105,6 +105,4 @@ public partial class Checkout : Page
         // Redirect to thank you page
         Response.Redirect("Thank You.aspx");
     }
-
-
 }

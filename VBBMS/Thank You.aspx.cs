@@ -22,5 +22,4 @@ public partial class Thank_You : System.Web.UI.Page
             }
         }
     }
-
 }

@@ -16,7 +16,6 @@ public partial class Staff : System.Web.UI.Page
             BindStaffData();
         }
     }
-
     protected void BindStaffData()
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
@@ -28,7 +27,6 @@ public partial class Staff : System.Web.UI.Page
             gvStaff.DataBind();
         }
     }
-
     protected void dvNewStaff_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
     {
         if (e.Exception == null || e.AffectedRows > 0)
@@ -41,19 +39,16 @@ public partial class Staff : System.Web.UI.Page
             e.ExceptionHandled = true;
         }
     }
-
     protected void gvStaff_RowEditing(object sender, GridViewEditEventArgs e)
     {
         gvStaff.EditIndex = e.NewEditIndex;
         BindStaffData();
     }
-
     protected void gvStaff_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         gvStaff.EditIndex = -1;
         BindStaffData();
     }
-
     protected void gvStaff_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int staffId = Convert.ToInt32(gvStaff.DataKeys[e.RowIndex].Value);
@@ -68,7 +63,6 @@ public partial class Staff : System.Web.UI.Page
         gvStaff.EditIndex = -1;
         BindStaffData();
     }
-
     protected void gvStaff_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         int staffId = Convert.ToInt32(gvStaff.DataKeys[e.RowIndex].Values["StaffID"]);
@@ -77,7 +71,6 @@ public partial class Staff : System.Web.UI.Page
 
         BindStaffData();
     }
-
     private void UpdateStaff(int staffId, string firstName, string lastName, string email, string phone, string address)
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
@@ -99,7 +92,6 @@ public partial class Staff : System.Web.UI.Page
             }
         }
     }
-
     private void DeleteStaff(int staffId)
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))

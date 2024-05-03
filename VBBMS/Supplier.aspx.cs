@@ -16,7 +16,6 @@ public partial class Supplier : System.Web.UI.Page
             BindSuppliersData();
         }
     }
-
     protected void BindSuppliersData()
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
@@ -28,7 +27,6 @@ public partial class Supplier : System.Web.UI.Page
             gvSuppliers.DataBind();
         }
     }
-
     protected void dvNewSupplier_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
     {
         if (e.Exception == null || e.AffectedRows > 0)
@@ -41,19 +39,16 @@ public partial class Supplier : System.Web.UI.Page
             e.ExceptionHandled = true;
         }
     }
-
     protected void gvSuppliers_RowEditing(object sender, GridViewEditEventArgs e)
     {
         gvSuppliers.EditIndex = e.NewEditIndex;
         BindSuppliersData();
     }
-
     protected void gvSuppliers_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         gvSuppliers.EditIndex = -1;
         BindSuppliersData();
     }
-
     protected void gvSuppliers_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int supplierId = Convert.ToInt32(gvSuppliers.DataKeys[e.RowIndex].Value);
@@ -68,7 +63,6 @@ public partial class Supplier : System.Web.UI.Page
         gvSuppliers.EditIndex = -1;
         BindSuppliersData();
     }
-
     protected void gvSuppliers_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         int supplierId = Convert.ToInt32(gvSuppliers.DataKeys[e.RowIndex].Values["SupplierId"]);
@@ -77,7 +71,6 @@ public partial class Supplier : System.Web.UI.Page
 
         BindSuppliersData();
     }
-
     private void UpdateSupplier(int supplierId, string supplierName, string contactPerson, string email, string phone, string address)
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))

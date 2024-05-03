@@ -11,7 +11,7 @@
             background-size: cover;
             background-position: center;
             color: black;
-            background-attachment:fixed;
+            background-attachment: fixed;
         }
 
         .navbar {
@@ -19,20 +19,20 @@
             background-color: rgba(255, 255, 255, 0.5);
         }
 
-        .navbar a {
-            text-decoration: none;
-            color: black;
-            background-color: lightblue;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-right: 10px;
-            transition: background-color 0.3s ease;
-        }
+            .navbar a {
+                text-decoration: none;
+                color: black;
+                background-color: lightblue;
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin-right: 10px;
+                transition: background-color 0.3s ease;
+            }
 
-        .navbar a:hover {
-            background-color: deepskyblue;
-            color: white;
-        }
+                .navbar a:hover {
+                    background-color: deepskyblue;
+                    color: white;
+                }
 
         .container-fluid {
             display: flex;

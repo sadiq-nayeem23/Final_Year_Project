@@ -12,7 +12,6 @@ public partial class ContactUs : System.Web.UI.Page
     {
 
     }
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         string name = txtName.Text.Trim();
@@ -51,7 +50,6 @@ public partial class ContactUs : System.Web.UI.Page
             }
         }
     }
-
     private void ClearForm()
     {
         txtName.Text = "";

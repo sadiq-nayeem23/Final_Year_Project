@@ -17,7 +17,6 @@ public partial class ContactInfo : System.Web.UI.Page
             BindData();
         }
     }
-
     private void BindData()
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;

@@ -15,17 +15,14 @@ public partial class Stock : System.Web.UI.Page
     {
         gvVegetableBoxes.EditIndex = e.NewEditIndex;
     }
-
     protected void gvVegetableBoxes_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
 
     }
-
     protected void gvVegetableBoxes_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
  
     }
-
     protected void gvVegetableBoxes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         gvVegetableBoxes.EditIndex = -1;

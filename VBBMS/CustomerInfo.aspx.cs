@@ -16,7 +16,6 @@ public partial class CustomerInfo : System.Web.UI.Page
             BindCustomersData();
         }
     }
-
     protected void BindCustomersData()
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
@@ -28,19 +27,16 @@ public partial class CustomerInfo : System.Web.UI.Page
             gvCustomers.DataBind();
         }
     }
-
     protected void gvCustomers_RowEditing(object sender, GridViewEditEventArgs e)
     {
         gvCustomers.EditIndex = e.NewEditIndex;
         BindCustomersData();
     }
-
     protected void gvCustomers_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         gvCustomers.EditIndex = -1;
         BindCustomersData();
     }
-
     protected void gvCustomers_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int customerId = Convert.ToInt32(gvCustomers.DataKeys[e.RowIndex].Value);
@@ -56,14 +52,12 @@ public partial class CustomerInfo : System.Web.UI.Page
         gvCustomers.EditIndex = -1;
         BindCustomersData();
     }
-
     protected void gvCustomers_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         int customerId = Convert.ToInt32(gvCustomers.DataKeys[e.RowIndex].Values["CustomerID"]);
         DeleteCustomer(customerId);
         BindCustomersData();
     }
-
     private void UpdateCustomer(int customerId, string firstName, string lastName, string email, string phone, string address, string password)
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))
@@ -86,7 +80,6 @@ public partial class CustomerInfo : System.Web.UI.Page
             }
         }
     }
-
     private void DeleteCustomer(int customerId)
     {
         using (SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True"))

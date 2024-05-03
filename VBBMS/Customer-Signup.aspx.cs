@@ -12,7 +12,6 @@ public partial class Customer_Signup : System.Web.UI.Page
     {
 
     }
-
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
         string firstName = txtFirstName.Text;

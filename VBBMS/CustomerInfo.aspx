@@ -26,6 +26,16 @@
                     background-color: deepskyblue;
                     color: white;
                 }
+
+        .gridview .GridViewEditRow {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        input[type=text], input[type=email], input[type=phone] {
+            width: 100%;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +51,8 @@
                 OnRowEditing="gvCustomers_RowEditing"
                 OnRowCancelingEdit="gvCustomers_RowCancelingEdit"
                 OnRowUpdating="gvCustomers_RowUpdating"
-                OnRowDeleting="gvCustomers_RowDeleting">
+                OnRowDeleting="gvCustomers_RowDeleting"
+                GridLines="None" CellPadding="4">
                 <Columns>
                     <asp:BoundField DataField="CustomerID" HeaderText="Customer ID" ReadOnly="true" SortExpression="CustomerID" />
                     <asp:BoundField DataField="First Name" HeaderText="First Name" SortExpression="First Name" />
@@ -53,7 +64,7 @@
                     <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ButtonType="Button" />
                 </Columns>
             </asp:GridView>
+        </form>
     </div>
-    </form>
 </body>
 </html>

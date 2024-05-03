@@ -35,21 +35,32 @@
                     background-color: deepskyblue;
                     color: white;
                 }
+
+        .gridview .GridViewEditRow {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        input[type=text], input[type=email], input[type=phone] {
+            width: 100%;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
     <div class="navbar bg-light">
-    <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
-    <a href="Login.aspx">Logout</a>
-</div>
-        <div class="container mt-3">
-            <h2>Staff Information</h2>
-    <form id="form1" runat="server">
+        <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a href="Login.aspx">Logout</a>
+    </div>
+    <div class="container mt-3">
+        <h2>Staff Information</h2>
+        <form id="form1" runat="server">
             <asp:GridView ID="gvStaff" runat="server" CssClass="gridview" AutoGenerateColumns="False" DataKeyNames="StaffID"
                 OnRowEditing="gvStaff_RowEditing"
                 OnRowCancelingEdit="gvStaff_RowCancelingEdit"
                 OnRowUpdating="gvStaff_RowUpdating"
-                OnRowDeleting="gvStaff_RowDeleting">
+                OnRowDeleting="gvStaff_RowDeleting"
+                GridLines="None" CellPadding="4">
                 <Columns>
                     <asp:BoundField DataField="StaffID" HeaderText="Staff ID" ReadOnly="true" SortExpression="StaffID" />
                     <asp:BoundField DataField="First Name" HeaderText="First Name" SortExpression="First Name" />
@@ -57,7 +68,7 @@
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ButtonType="Button" />
                 </Columns>
             </asp:GridView>
 
@@ -70,7 +81,7 @@
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                    <asp:CommandField ShowInsertButton="True" />
+                    <asp:CommandField ShowInsertButton="True" ButtonType="Button" />
                 </Fields>
             </asp:DetailsView>
 
@@ -97,7 +108,7 @@
                     <asp:Parameter Name="StaffID" Type="Int32" />
                 </DeleteParameters>
             </asp:SqlDataSource>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>

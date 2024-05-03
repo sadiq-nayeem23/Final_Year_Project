@@ -13,6 +13,7 @@
             background-position: center;
             height: 100vh;
         }
+
         .container {
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
@@ -22,31 +23,36 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .navbar {
             display: flex;
             justify-content: space-between;
             padding: 10px;
         }
-        .navbar a {
-            padding: 10px;
-            text-decoration: none;
-            color: black;
-        }
-        .navbar a:hover{
-            background-color: #04AA6D;
-color: white;
-        }
+
+            .navbar a {
+                padding: 10px;
+                text-decoration: none;
+                color: black;
+            }
+
+                .navbar a:hover {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
         .navbar-right {
             align-items: center;
         }
-        .navbar-right a:hover{
-            background-color: orangered;
-            color: white;
-        }
+
+            .navbar-right a:hover {
+                background-color: orangered;
+                color: white;
+            }
     </style>
 </head>
 <body>
-     <div class="navbar">
+    <div class="navbar">
         <div>
             <a class="active" href="Home.aspx">Home</a>
             <a href="AboutUs.aspx">About Us</a>

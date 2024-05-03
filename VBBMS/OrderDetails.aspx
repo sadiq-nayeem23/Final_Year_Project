@@ -8,39 +8,39 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-    background-image: url('Assets/freshvegetables.jpg');
-    background-size: cover;
-    background-position: center;
-    color: black;
-    background-attachment: fixed;
-}
-
-.navbar {
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-    .navbar a {
-        text-decoration: none;
-        color: black;
-        background-color: lightblue;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin-right: 10px;
-        transition: background-color 0.3s ease;
-    }
-
-        .navbar a:hover {
-            background-color: deepskyblue;
-            color: white;
+            background-image: url('Assets/freshvegetables.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+            background-attachment: fixed;
         }
+
+        .navbar {
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+            .navbar a {
+                text-decoration: none;
+                color: black;
+                background-color: lightblue;
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin-right: 10px;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbar a:hover {
+                    background-color: deepskyblue;
+                    color: white;
+                }
     </style>
 </head>
 <body>
     <div class="navbar bg-light">
-    <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
-    <a href="Login.aspx">Logout</a>
-</div>
+        <a href="Admin-Dashboard.aspx">Admin Dashboard</a>
+        <a href="Login.aspx">Logout</a>
+    </div>
     <div class="container mt-3">
         <h2>Order Details Management</h2>
         <form id="form1" runat="server">

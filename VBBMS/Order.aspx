@@ -12,7 +12,7 @@
             background-image: url('Assets/Order-bg.jpeg');
             background-size: cover;
             background-position: center;
-            background-attachment:fixed;
+            background-attachment: fixed;
             color: white;
             display: flex;
             flex-direction: column;
@@ -31,33 +31,34 @@
         }
 
         .navbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-    .navbar a {
-        padding: 10px 15px;
-        color: black;
-        background-color: transparent;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-
-        .navbar a.active,
-        .navbar a:hover {
-            background-color: #04AA6D;
-            color: white;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-.navbar-right {
-    align-items: center;
-}
+            .navbar a {
+                padding: 10px 15px;
+                color: black;
+                background-color: transparent;
+                text-decoration: none;
+                border-radius: 5px;
+            }
 
-    .navbar-right a:hover {
-        background-color: orangered;
-        color: white;
-    }
+                .navbar a.active,
+                .navbar a:hover {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+        .navbar-right {
+            align-items: center;
+        }
+
+            .navbar-right a:hover {
+                background-color: orangered;
+                color: white;
+            }
+
         .floating-card {
             background-color: #fff;
             color: #333;
@@ -74,15 +75,15 @@
 </head>
 <body>
     <div class="navbar">
-    <div>
-        <a href="Home.aspx">Home</a>
-        <a href="AboutUs.aspx">About Us</a>
-        <a href="ContactUs.aspx">Contact Us</a>
+        <div>
+            <a href="Home.aspx">Home</a>
+            <a href="AboutUs.aspx">About Us</a>
+            <a href="ContactUs.aspx">Contact Us</a>
+        </div>
+        <div class="navbar-right">
+            <a href="Login.aspx">Logout</a>
+        </div>
     </div>
-    <div class="navbar-right">
-        <a href="Login.aspx">Logout</a>
-    </div>
-</div>
     <div class="container">
         <form id="form1" runat="server">
             <div class="row">
@@ -140,7 +141,7 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <asp:Label ID="lblTotal" runat="server" CssClass="h4" Text="Total: $0.00" />
+                    <asp:Label ID="lblTotal" runat="server" CssClass="h4" Text="Total: £0.00" />
                     <br />
                     <div class="form-group">
                         <label for="txtEmail">Email:</label>

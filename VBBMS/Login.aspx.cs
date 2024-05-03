@@ -7,7 +7,6 @@ public partial class Login : Page
     protected void Page_Load(object sender, EventArgs e)
     {
     }
-
     private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\Project\\VBBMS\\VBBMS\\App_Data\\Database.mdf;Integrated Security=True";
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -28,7 +27,6 @@ public partial class Login : Page
             lblMessage.Text = "Invalid username or password";
         }
     }
-
     private bool AuthenticateCustomer(string email, string password)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -51,7 +49,6 @@ public partial class Login : Page
             }
         }
     }
-
     private bool AuthenticateAdmin(string adminID, string password)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
